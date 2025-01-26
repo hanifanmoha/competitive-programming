@@ -1,6 +1,48 @@
 package main
 
+import "fmt"
+
+// 4 5 6 7 100
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}
+
 func minSubArrayLen(target int, nums []int) int {
+
+	// fmt.Println("Target : ", target)
+	// fmt.Println("Nums : ", nums)
+	n := len(nums)
+	left, right := 0, 0
+	tmpSum := 0
+	minLen := 9999999
+
+	tmpSum = nums[0]
+	for left < n && right < n {
+		fmt.Printf("%d %d : %d (%d)\n", left, right, tmpSum, minLen)
+		if tmpSum >= target {
+			minLen = min(minLen, right-left+1)
+			tmpSum -= nums[left]
+			left++
+		} else {
+			right++
+			if right < n {
+				tmpSum += nums[right]
+			}
+		}
+
+	}
+
+	if minLen >= 9999999 {
+		return 0
+	}
+	return minLen
+}
+
+func minSubArrayLen2(target int, nums []int) int {
 
 	// fmt.Println(nums)
 

@@ -1,4 +1,4 @@
-package main
+package spiral_matrix
 
 import (
 	"reflect"

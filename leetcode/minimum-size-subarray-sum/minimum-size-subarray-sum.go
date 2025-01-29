@@ -1,4 +1,4 @@
-package main
+package minimum_size_subarray_sum
 
 import "fmt"
 

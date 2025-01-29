@@ -1,4 +1,4 @@
-package main
+package two_sum_ii_input_array_is_sorted
 
 // 2 7 11 15
 

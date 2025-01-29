@@ -1,4 +1,4 @@
-package main
+package game_of_life
 
 import (
 	"reflect"

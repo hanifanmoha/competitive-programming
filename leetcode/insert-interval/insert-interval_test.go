@@ -1,4 +1,4 @@
-package insertinterval
+package insert_interval
 
 import (
 	"reflect"

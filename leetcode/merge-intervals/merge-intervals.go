@@ -1,4 +1,4 @@
-package main
+package merge_intervals
 
 func sortIntervals(intervals [][]int) [][]int {
 

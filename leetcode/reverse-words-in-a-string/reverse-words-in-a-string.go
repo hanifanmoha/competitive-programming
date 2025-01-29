@@ -1,4 +1,4 @@
-package main
+package reverse_word_in_a_string
 
 import (
 	"strings"

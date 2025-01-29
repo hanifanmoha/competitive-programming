@@ -1,4 +1,4 @@
-package main
+package text_justification
 
 import "strings"
 

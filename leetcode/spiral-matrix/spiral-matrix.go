@@ -1,4 +1,4 @@
-package main
+package spiral_matrix
 
 const RIGHT = 1001
 const LEFT = 1002

@@ -1,4 +1,4 @@
-package main
+package unique_paths_ii
 
 import "testing"
 

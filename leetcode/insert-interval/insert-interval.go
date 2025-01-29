@@ -1,4 +1,4 @@
-package insertinterval
+package insert_interval
 
 func sortIntervals(intervals [][]int) [][]int {
 

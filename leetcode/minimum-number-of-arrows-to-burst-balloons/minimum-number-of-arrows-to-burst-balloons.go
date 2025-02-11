@@ -2,6 +2,7 @@ package minimum_number_of_arrows_to_burst_balloons
 
 import "fmt"
 
+// sort using end
 func sortIntervals(intervals [][]int) [][]int {
 
 	n := len(intervals)
@@ -26,7 +27,7 @@ func sortIntervals(intervals [][]int) [][]int {
 		} else if ib >= nb {
 			merged = append(merged, a[ia])
 			ia++
-		} else if b[ib][0] < a[ia][0] {
+		} else if b[ib][1] < a[ia][1] {
 			merged = append(merged, b[ib])
 			ib++
 		} else {
@@ -60,5 +61,14 @@ func findMinArrowShots(points [][]int) int {
 
 	fmt.Println("Sorted : ", sorted)
 
-	return len(points)
+	end := sorted[0][1]
+	cnt := 1
+	for _, point := range sorted[1:] {
+		if point[0] > end {
+			end = point[1]
+			cnt++
+		}
+	}
+
+	return cnt
 }

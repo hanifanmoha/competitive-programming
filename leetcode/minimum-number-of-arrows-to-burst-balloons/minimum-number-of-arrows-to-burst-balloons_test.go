@@ -30,7 +30,7 @@ func Test_findMinArrowShots(t *testing.T) {
 		{
 			name: "test_case_4",
 			args: args{points: [][]int{{1, 10}, {2, 3}, {4, 5}, {6, 7}}},
-			want: 2,
+			want: 3,
 		},
 		{
 			name: "test_case_5",
@@ -60,7 +60,7 @@ func Test_findMinArrowShots(t *testing.T) {
 		{
 			name: "test_case_10",
 			args: args{points: [][]int{{1, 2}, {2, 3}, {3, 4}, {4, 5}, {5, 6}}},
-			want: 2,
+			want: 3,
 		},
 	}
 	for _, tt := range tests {

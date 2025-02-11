@@ -62,14 +62,14 @@ func operatorOrder(c byte) int {
 	if c == '/' || c == '*' {
 		return 1
 	}
-	if c == '+' || c == '-' {
+	if c == '+' || c == '-' || c == '~' {
 		return 0
 	}
 	return 0
 }
 
 func isOperator(c byte) bool {
-	return c == '+' || c == '-' || c == '*' || c == '/'
+	return c == '+' || c == '-' || c == '*' || c == '/' || c == '~'
 }
 
 func isParenthesis(c byte) bool {
@@ -130,7 +130,7 @@ func str2Token(s string) []string {
 	isAfterNumber := false
 	for i := range s {
 		if s[i] == '-' && !isAfterNumber {
-			// tokens = append(tokens, "~")
+			tokens = append(tokens, "~")
 			tmp = make([]byte, 0)
 		} else if isOperator(s[i]) || isParenthesis(s[i]) {
 			if len(tmp) > 0 {
@@ -138,7 +138,7 @@ func str2Token(s string) []string {
 			}
 			tokens = append(tokens, s[i:i+1])
 			tmp = make([]byte, 0)
-			if isOperator(s[i]) {
+			if isOperator(s[i]) { // -> handling for negative, as it is only occur after numbers
 				isAfterNumber = false
 			}
 		} else {
@@ -159,9 +159,12 @@ func evaluatePostfix(tokens []string) int {
 
 	for _, t := range tokens {
 		if len(t) == 1 && isOperator(t[0]) {
-			b, _ := strconv.Atoi(stack.Pop())
-			a, _ := strconv.Atoi(stack.Pop())
-			tmp := 0
+			a, b, tmp := 0, 0, 0
+			b, _ = strconv.Atoi(stack.Pop())
+			if t[0] != '~' {
+				a, _ = strconv.Atoi(stack.Pop())
+			}
+			// operate!
 			if t[0] == '+' {
 				tmp = a + b
 			} else if t[0] == '-' {
@@ -170,6 +173,8 @@ func evaluatePostfix(tokens []string) int {
 				tmp = a * b
 			} else if t[0] == '/' {
 				tmp = a / b
+			} else if t[0] == '~' {
+				tmp = -b
 			}
 			// fmt.Println("Evaluate", a, t, b, "=", tmp)
 			stack.Push(fmt.Sprint(tmp))

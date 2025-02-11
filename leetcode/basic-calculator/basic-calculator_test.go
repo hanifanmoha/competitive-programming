@@ -74,13 +74,13 @@ func Test_calculate(t *testing.T) {
 		},
 		{
 			name: "test8",
-			args: args{s: "- (3 + ( - 4 + (-(5))))"},
-			want: 6,
+			args: args{s: "- (3 + ( - 4 - 1 + (-(5))))"},
+			want: 7,
 		},
 		{
 			name: "test7",
 			args: args{s: "- (3 + ( - 4 + 5))"},
-			want: -12,
+			want: -4,
 		},
 		{
 			name: "test9",

@@ -95,7 +95,7 @@ func calcPath(current *GraphNode) int {
 
 var mps int = -MAX_VAL
 
-func maxPathSum(root *TreeNode) int {
+func maxPathSum2(root *TreeNode) int {
 
 	mps = -MAX_VAL
 

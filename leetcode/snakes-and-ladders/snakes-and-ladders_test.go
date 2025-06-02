@@ -72,6 +72,20 @@ func Test_snakesAndLadders(t *testing.T) {
 			},
 			want: 3,
 		},
+		{
+			name: "Test case 5",
+			args: args{
+				board: [][]int{
+					{-1, -1, -1, -1, -1, -1},
+					{-1, -1, -1, -1, -1, -1},
+					{-1, -1, -1, -1, -1, -1},
+					{-1, -1, -1, -1, -1, -1},
+					{6, 5, 4, 3, 2, 1},
+					{-1, -1, -1, -1, -1, -1},
+				},
+			},
+			want: -1,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

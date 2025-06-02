@@ -44,7 +44,7 @@ func walk(idx int, path []int, flag []bool, mem []int) int {
 	return mem[idx]
 }
 
-func snakesAndLadders(board [][]int) int {
+func snakesAndLadders2(board [][]int) int {
 
 	n := len(board)
 

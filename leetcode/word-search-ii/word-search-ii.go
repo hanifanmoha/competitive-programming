@@ -41,7 +41,7 @@ func initFindWord(board [][]byte, flag [][]bool, word string) bool {
 	return false
 }
 
-func findWords(board [][]byte, words []string) []string {
+func findWords2(board [][]byte, words []string) []string {
 
 	y, x := len(board), len(board[0])
 	flag := make([][]bool, y)

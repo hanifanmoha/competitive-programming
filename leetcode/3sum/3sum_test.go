@@ -26,10 +26,17 @@ func Test_threeSum(t *testing.T) {
 			want: [][]int{},
 		},
 		{
-			name: "TC1",
-			args: []int{0, 0, 0},
+			name: "TC3",
+			args: []int{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 			want: [][]int{
 				{0, 0, 0},
+			},
+		},
+		{
+			name: "TC4",
+			args: []int{-1, 0, 1, 0},
+			want: [][]int{
+				{-1, 0, 1},
 			},
 		},
 	}

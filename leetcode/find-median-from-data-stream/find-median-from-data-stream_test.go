@@ -1,6 +1,9 @@
 package findmedianfromdatastream
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 // Note : need to balance the tree
 
@@ -32,11 +35,14 @@ func TestMedianFinder(t *testing.T) {
 			for i, action := range tt.actions {
 				switch action {
 				case "addNum":
+					fmt.Println("Add Num :", tt.values[i][0])
 					medianFinder.AddNum(tt.values[i][0])
 				case "findMedian":
 					got = medianFinder.FindMedian()
 					if got != tt.want[wantIdx] {
 						t.Errorf("medianFinder.FindMedian() = %v, want %v", got, tt.want[wantIdx])
+					} else {
+						fmt.Println("Find Median :", got)
 					}
 					wantIdx++
 				}

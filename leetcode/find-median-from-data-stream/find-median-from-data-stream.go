@@ -1,5 +1,7 @@
 package findmedianfromdatastream
 
+import "fmt"
+
 type MedianFinder struct {
 	tree *Tree
 }
@@ -10,10 +12,13 @@ func Constructor() MedianFinder {
 
 func (m *MedianFinder) AddNum(num int) {
 	// fmt.Println("AddNum", num)
-	m.tree.Insert(num)
+	m.tree.TempInsert(num)
 }
 
 func (m *MedianFinder) FindMedian() float64 {
+	fmt.Println("======")
+	m.tree.Traverse(m.tree.root)
+	fmt.Println("======")
 	med := m.tree.FindMedian()
 	// fmt.Println("FindMedian", med)
 	return med

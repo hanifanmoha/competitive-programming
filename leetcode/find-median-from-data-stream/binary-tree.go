@@ -11,7 +11,12 @@ type Node struct {
 }
 
 type Tree struct {
-	root *Node
+	root  *Node
+	queue []int
+}
+
+func (t *Tree) TempInsert(val int) {
+	t.queue = append(t.queue, val)
 }
 
 func (t *Tree) Insert(val int) {
@@ -32,6 +37,11 @@ func (t *Tree) Traverse(node *Node) {
 }
 
 func (t *Tree) FindMedian() float64 {
+
+	nQueue := len(t.queue)
+	t.insertFromQueue(0, nQueue-1)
+	t.queue = make([]int, 0)
+
 	n := 0
 	if t.root != nil {
 		n = 1 + t.root.nLeft + t.root.nRight
@@ -46,6 +56,17 @@ func (t *Tree) FindMedian() float64 {
 		nodeA, nodeB := t.getByIndex(t.root, a), t.getByIndex(t.root, b)
 		return (float64(nodeA.val) + float64(nodeB.val)) / 2
 	}
+}
+
+func (t *Tree) insertFromQueue(left int, right int) {
+	if left > right {
+		return
+	}
+	mid := left + (right-left)/2
+	val := t.queue[mid]
+	t.Insert(val)
+	t.insertFromQueue(left, mid-1)
+	t.insertFromQueue(mid+1, right)
 }
 
 func (t *Tree) getByIndex(root *Node, idx int) *Node {

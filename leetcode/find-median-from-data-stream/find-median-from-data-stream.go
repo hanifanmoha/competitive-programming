@@ -1,32 +1,41 @@
 package findmedianfromdatastream
 
-import "fmt"
-
 type MedianFinder struct {
-	tree *Tree
+	// tree *Tree
+	minHeap *Heap
+	maxHeap *Heap
+	tmpVal  *int
 }
 
 func Constructor() MedianFinder {
-	return MedianFinder{tree: &Tree{}}
+	return MedianFinder{
+		minHeap: NewHeap(true),
+		maxHeap: NewHeap(false),
+	}
 }
 
 func (m *MedianFinder) AddNum(num int) {
-	// fmt.Println("AddNum", num)
-	m.tree.TempInsert(num)
+	if m.tmpVal == nil {
+		m.maxHeap.Insert(num)
+		a, _ := m.maxHeap.Pop()
+		m.minHeap.Insert(a)
+		b, _ := m.minHeap.Pop()
+		m.tmpVal = &b
+	} else {
+		m.maxHeap.Insert(num)
+		m.maxHeap.Insert(*m.tmpVal)
+		a, _ := m.maxHeap.Pop()
+		m.minHeap.Insert(a)
+		m.tmpVal = nil
+	}
 }
 
 func (m *MedianFinder) FindMedian() float64 {
-	fmt.Println("======")
-	m.tree.Traverse(m.tree.root)
-	fmt.Println("======")
-	med := m.tree.FindMedian()
-	// fmt.Println("FindMedian", med)
-	return med
+	if m.tmpVal != nil {
+		return float64(*m.tmpVal)
+	} else {
+		a, _ := m.maxHeap.Top()
+		b, _ := m.minHeap.Top()
+		return float64(a+b) / 2
+	}
 }
-
-/**
- * Your MedianFinder object will be instantiated and called as such:
- * obj := Constructor();
- * obj.AddNum(num);
- * param_2 := obj.FindMedian();
- */
